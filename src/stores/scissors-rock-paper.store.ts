@@ -4,7 +4,6 @@ import { EResult } from "../types/enums/result.enum";
 import { IGameResult } from "../types/scissors-rock-paper/interfaces/game-result.interface";
 
 export class ScissorsRockPaperStore {
-
   constructor() {
     makeObservable(this);
   }
@@ -15,20 +14,23 @@ export class ScissorsRockPaperStore {
     [EChoice.SCISSORS]: EChoice.PAPER,
   };
 
-  private _betSize: number = 500;
-  private _maxAvailableBalance: number = 5000;
-  private _winningRateOneChoice: number = 14;
-  private _winingRateTwoChoices: number = 3;
-  private _maxNumberOfPositions: number = 2;
+  private _betSize = 500;
+  private _maxAvailableBalance = 5000;
+  private _winningRateOneChoice = 14;
+  private _winingRateTwoChoices = 3;
+  private _maxNumberOfPositions = 2;
 
-  @observable private _playersChoice: Map<EChoice, number> = new Map<EChoice, number>();
+  @observable private _playersChoice: Map<EChoice, number> = new Map<
+    EChoice,
+    number
+  >();
 
   @action private _setPlayersChoice(v: EChoice, bet: number) {
     this._playersChoice.set(v, bet);
   }
 
   @action private _clearPlayersChoice() {
-    this._playersChoice.clear()
+    this._playersChoice.clear();
   }
 
   @observable bestPlayersChoice: EChoice | null = null;
@@ -49,7 +51,7 @@ export class ScissorsRockPaperStore {
     this.balance = v;
   }
 
-  @observable victoryCounter: number = 0;
+  @observable victoryCounter = 0;
 
   @action private _setVictoryCounter(v: number) {
     this.victoryCounter = v;
@@ -62,11 +64,14 @@ export class ScissorsRockPaperStore {
   }
 
   @computed get currentBetSize(): number {
-    return Array.from(this._playersChoice.values()).reduce((total, value) => total + value, 0);
+    return Array.from(this._playersChoice.values()).reduce(
+      (total, value) => total + value,
+      0
+    );
   }
 
   @computed get isAllowedToBet(): boolean {
-    return this.balance >= this._betSize
+    return this.balance >= this._betSize;
   }
 
   @computed get isAllowedToPlay(): boolean {
@@ -74,23 +79,27 @@ export class ScissorsRockPaperStore {
   }
 
   @computed private get _currentWinningRate(): number {
-    return this._maxNumberOfPositionsReached ? this._winingRateTwoChoices : this._winningRateOneChoice;
+    return this._maxNumberOfPositionsReached
+      ? this._winingRateTwoChoices
+      : this._winningRateOneChoice;
   }
 
   private get _randomChoice(): EChoice {
-    return this.choiceOptions[Math.floor(Math.random() * this.choiceOptions.length)];
+    return this.choiceOptions[
+      Math.floor(Math.random() * this.choiceOptions.length)
+    ];
   }
 
   private get _maxNumberOfPositionsReached(): boolean {
-    return this._playersChoice.size === this._maxNumberOfPositions
+    return this._playersChoice.size === this._maxNumberOfPositions;
   }
 
   get choiceOptions(): EChoice[] {
-    return Object.values(EChoice)
+    return Object.values(EChoice);
   }
 
   getBetForPlayersChoice(choice: EChoice): number {
-    return this._playersChoice.get(choice) || 0
+    return this._playersChoice.get(choice) || 0;
   }
 
   get isVictory(): boolean {
@@ -102,7 +111,7 @@ export class ScissorsRockPaperStore {
   }
 
   handlePlayersBet(v: EChoice): void {
-    if(!this.isAllowedToBet) return;
+    if (!this.isAllowedToBet) return;
     const currentBet = this._playersChoice.get(v) || 0;
     const updatedBet = currentBet + this._betSize;
     this._setPlayersChoice(v, updatedBet);
@@ -110,7 +119,7 @@ export class ScissorsRockPaperStore {
   }
 
   isOptionDisabled(option: EChoice): boolean {
-    if(this._maxNumberOfPositionsReached) {
+    if (this._maxNumberOfPositionsReached) {
       return !this._playersChoice.has(option) || !this.isAllowedToBet;
     }
     return !this.isAllowedToBet;
@@ -119,7 +128,7 @@ export class ScissorsRockPaperStore {
   private get _gameResult(): IGameResult {
     let result: EResult = EResult.LOSS;
     let value: EChoice | null = null;
-    let bet: number = 0;
+    let bet = 0;
     for (const [ch, b] of this._playersChoice.entries()) {
       value = ch;
       bet = this.currentBetSize;
@@ -135,7 +144,7 @@ export class ScissorsRockPaperStore {
     return {
       result,
       value,
-      bet
+      bet,
     };
   }
 
@@ -145,18 +154,17 @@ export class ScissorsRockPaperStore {
     this._setBestPlayersChoice(result.value);
     //setTimeout to emulate some loading
     setTimeout(() => {
-      if(result.result === EResult.WIN) {
-        this._setBalance(this.balance + result.bet)
-        this._setVictoryCounter(this.victoryCounter + 1)
+      if (result.result === EResult.WIN) {
+        this._setBalance(this.balance + result.bet);
+        this._setVictoryCounter(this.victoryCounter + 1);
       }
-      if(result.result === EResult.TIE) {
+      if (result.result === EResult.TIE) {
         this._setBalance(this.balance + result.bet);
       }
 
       this._setGameResult(result);
       this._clearPlayersChoice();
-    }, 1000)
-
+    }, 1000);
   }
 
   reset(): void {
@@ -164,5 +172,4 @@ export class ScissorsRockPaperStore {
     this._setComputersChoice(null);
     this._setGameResult(null);
   }
-
 }

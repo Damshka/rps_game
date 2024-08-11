@@ -1,2 +1,2 @@
 //TODO: think where to store types
-export type ButtonType = 'submit' | 'button' | 'reset';
+export type ButtonType = "submit" | "button" | "reset";
