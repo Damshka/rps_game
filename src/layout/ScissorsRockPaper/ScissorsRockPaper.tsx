@@ -5,10 +5,10 @@ import { Counter } from "../../components/Counter/Counter";
 import { Card } from "../../components/Card/Card";
 import { Button } from "../../components/Button/Button";
 import { ScissorsRockPaperStore } from "../../stores/scissors-rock-paper.store";
-import { EResult } from "../../types/enums/result.enum";
 import { EChoice } from "../../types/scissors-rock-paper/enums/choice.enum";
 import { EColorKind } from "../../types/enums/color-kind.enum";
 import styles from "./ScissorsRockPaper.module.scss";
+import { IGameResult } from "../../types/scissors-rock-paper/interfaces/game-result.interface";
 
 @observer
 export class ScissorsRockPaper extends React.Component<{}> {
@@ -21,15 +21,17 @@ export class ScissorsRockPaper extends React.Component<{}> {
   }
 
   renderTitle(){
-    const gameResult = this._store.gameResult;
-    const bestPlayersChoice = this._store.bestPlayersChoice;
-    const computersChoice = this._store.computersChoice;
-    const colorKind = !!gameResult?.value ? this.getColorKind(gameResult.value) : '';
+    const gameResult: IGameResult | null = this._store.gameResult;
+    const isVictory: boolean = this._store.isVictory;
+    const isTie: boolean = this._store.isTie;
+    const bestPlayersChoice: EChoice | null = this._store.bestPlayersChoice;
+    const computersChoice: EChoice | null = this._store.computersChoice;
+    const colorKind: EColorKind | null = this._getColorKind( isVictory? bestPlayersChoice : computersChoice);
     if(!gameResult) {
       return bestPlayersChoice ?  <h2>{computersChoice} <span>vs</span> {bestPlayersChoice}</h2> : <p>Pick your position</p>;
     };
-    const title: string = gameResult.result === EResult.TIE ? "It's a tie!" : `${gameResult.value} won`; //TODO: loss
-    const subtitle: string = gameResult.result === EResult.WIN ? `You win ${gameResult.bet}` : gameResult.result === EResult.LOSS ? `You lost ${gameResult.bet}` : ''
+    const title: string = isTie ? "It's a tie!" : `${isVictory ? bestPlayersChoice : computersChoice} won`;
+    const subtitle: string = isTie ? "" : `You ${isVictory ? 'win' : 'loss'} ${gameResult.bet}`;
     return (
       <>
         <h2 className={!!colorKind ? styles[colorKind] : ''}>{title}</h2>
@@ -38,7 +40,7 @@ export class ScissorsRockPaper extends React.Component<{}> {
     )
   }
 
-  getColorKind(o: EChoice): EColorKind | null {
+  private _getColorKind(o: EChoice | null): EColorKind | null {
     switch (o) {
       case EChoice.PAPER:
         return EColorKind.GREEN;
@@ -63,15 +65,15 @@ export class ScissorsRockPaper extends React.Component<{}> {
           <section className={styles['title-wrapper']}>
             {this.renderTitle()}
           </section>
-          <section className={styles.wrapper}>
+          <section className={styles['wrapper']}>
             {this._store.choiceOptions.map((o, index) => (
               <Card
                 key={index}
                 disabled={this._store.isOptionDisabled(o) || !!this._store.computersChoice}
                 onClick={() => {this._store.handlePlayersBet(o)}}
                 label={o}
-                betValue={this._store.getChoiceValue(o)}
-                kind={this.getColorKind(o)}
+                betValue={this._store.getBetForPlayersChoice(o)}
+                kind={this._getColorKind(o)}
               />
             ))}
           </section>

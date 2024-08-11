@@ -1,12 +1,13 @@
 @use "../../styles/colors";
+@use "../../styles/sizing";
 
 .button {
-  font-size: 20px;
-  padding: 16px 0;
+  font-size: sizing.$base-size--10;
+  padding: sizing.$base-size--8 0;
   background-color: colors.$black;
   color: colors.$gold;
-  border: 2px solid colors.$gold;
-  border-radius: 32px;
+  border: sizing.$base-size solid colors.$gold;
+  border-radius: sizing.$base-size--16;
   min-width: 150px;
   cursor: pointer;
   &:disabled {

@@ -1,9 +1,12 @@
 @use "./styles/reset";
 @use "./styles/colors";
-@use "./styles/typography";
+@use "styles/sizing";
+@use "styles/fonts";
 
 body {
   background: linear-gradient(0deg, colors.$black 0%, colors.$gray 100%);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
 p, span, h1, h2, h3, h4, h5, h6, button {

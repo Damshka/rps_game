@@ -1,23 +1,24 @@
 @use "../../styles/colors";
+@use "../../styles/sizing";
 
 p {
-  font-size: 16px;
+  font-size: sizing.$base-size--8;
 }
 
 h2 {
-  font-size: 48px;
+  font-size: sizing.$base-size--24;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: sizing.$base-size--12;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
-  gap: 24px;
-  padding-top: 24px;
-  padding-bottom: 56px;
+  gap: sizing.$base-size--12;
+  padding-top: sizing.$base-size--12;
+  padding-bottom: sizing.$base-size--28;
 }
 
 .title-wrapper {
@@ -26,7 +27,7 @@ h3 {
   flex-direction: column;
   justify-content: flex-end;
   & span {
-    font-size: 20px;
+    font-size: sizing.$base-size--10;
     color: colors.$white;
   }
 }

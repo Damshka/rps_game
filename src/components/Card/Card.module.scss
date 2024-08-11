@@ -1,34 +1,37 @@
 @use "../../styles/colors";
+@use "../../styles/sizing";
 
 .card {
-  border-width: 2px;
+  border-width: sizing.$base-size;
   border-style: solid;
-  padding: 16px 0;
+  padding: sizing.$base-size--8 0;
   min-width: 150px;
   height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  gap: 12px;
-  border-radius: 4px;
+  gap: sizing.$base-size--6;
+  border-radius: sizing.$base-size--2;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
   &:disabled {
     opacity: 0.5;
     cursor: auto;
   }
 }
 
-.bet {
+.card-bet {
   border-radius: 50%;
-  padding: 6px 2px;
+  padding: sizing.$base-size--3 sizing.$base-size;
   background-color: colors.$white;
   color: colors.$black;
-  border: 4px solid colors.$blue;
+  border: sizing.$base-size--2 solid colors.$blue;
 }
 
-.label {
-  font-size: 16px;
+.card-label {
+  font-size: sizing.$base-size--8;
 }
 
 .blue {

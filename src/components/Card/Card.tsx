@@ -19,12 +19,12 @@ export class Card extends React.Component<CardProps>{
       kind
     } = this.props;
     return (<button
-      className={`${styles.card} ${!!kind ? styles[kind] : ''}`}
+      className={`${styles['card']} ${!!kind ? styles[kind] : ''}`}
       disabled={disabled}
       type={"button"}
       onClick={onClick}>
-        {!!betValue && <span className={styles.bet}>{betValue}</span>}
-        <span className={styles.label}>{label}</span>
+        {!!betValue && <span className={styles['card-bet']}>{betValue}</span>}
+        <span className={styles['card-label']}>{label}</span>
     </button>)
   }
 }

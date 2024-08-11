@@ -1,10 +1,11 @@
 @use "../../styles/colors";
+@use "../../styles/sizing";
 
 .header {
   background-color: colors.$black;
   width: 100%;
-  padding: 4px;
+  padding: sizing.$base-size--2;
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: sizing.$base-size--24;
 }
