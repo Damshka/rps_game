@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Counter.module.scss";
 
 export interface CounterProps {
   title: string,
@@ -11,7 +12,7 @@ export class Counter extends React.Component<CounterProps> {
       title,
       value} = this.props;
     return (
-      <p>{title}: <span>{value}</span></p>
+      <p className={styles.title}>{title}: <span>{value}</span></p>
     )
   }
 }

@@ -1,0 +1,44 @@
+@use "../../styles/colors";
+
+p {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 56px;
+}
+
+.title-wrapper {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  & span {
+    font-size: 20px;
+    color: colors.$white;
+  }
+}
+
+.blue {
+  color: colors.$blue;
+}
+
+.green {
+  color: colors.$green;
+}
+
+.red {
+  color: colors.$red;
+}

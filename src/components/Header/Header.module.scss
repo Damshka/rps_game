@@ -1,5 +1,10 @@
+@use "../../styles/colors";
+
 .header {
-  background-color: #61dafb;
+  background-color: colors.$black;
   width: 100%;
   padding: 4px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
 }

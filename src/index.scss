@@ -1,8 +1,11 @@
+@use "./styles/reset";
+@use "./styles/colors";
+@use "./styles/typography";
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(0deg, colors.$black 0%, colors.$gray 100%);
+}
+
+p, span, h1, h2, h3, h4, h5, h6, button {
+  text-transform: uppercase;
 }

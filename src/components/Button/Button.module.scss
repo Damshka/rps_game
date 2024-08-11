@@ -1,3 +1,17 @@
+@use "../../styles/colors";
+
 .button {
-  font-size: 24px;
+  font-size: 20px;
+  padding: 16px 0;
+  background-color: colors.$black;
+  color: colors.$gold;
+  border: 2px solid colors.$gold;
+  border-radius: 32px;
+  min-width: 150px;
+  cursor: pointer;
+  &:disabled {
+    color: colors.$gray;
+    border-color: colors.$gray;
+    cursor: auto;
+  }
 }

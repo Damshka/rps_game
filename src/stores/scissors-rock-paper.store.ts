@@ -93,7 +93,8 @@ export class ScissorsRockPaperStore {
   }
 
   private get _computerChoice(): EChoice {
-    return this.choiceOptions[Math.floor(Math.random() * this.choiceOptions.length)];
+    return EChoice.SCISSORS
+    // return this.choiceOptions[Math.floor(Math.random() * this.choiceOptions.length)];
   }
 
   isOptionDisabled(option: EChoice): boolean {
@@ -113,7 +114,7 @@ export class ScissorsRockPaperStore {
     let bet: number = 0;
     for (const [ch, b] of this._playersChoice.entries()) {
       value = ch;
-      bet = b;
+      bet = this.currentBetSize;
       if (this._victoryScheme[ch] === this.computersChoice) {
         result = EResult.WIN;
         bet = b * this._currentWinningRate;
@@ -121,6 +122,7 @@ export class ScissorsRockPaperStore {
       }
 
       if (ch === this.computersChoice) {
+        bet = this._maxNumberOfPositionsReached ? this.currentBetSize : b;
         result = this._maxNumberOfPositionsReached ? EResult.LOSS : EResult.TIE;
         break;
       }

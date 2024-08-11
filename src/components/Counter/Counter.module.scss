@@ -1,0 +1,8 @@
+@use "../../styles/colors";
+
+.title {
+  color: colors.$gold;
+  & > span {
+    color: colors.$white;
+  }
+}

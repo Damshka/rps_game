@@ -1,0 +1,50 @@
+@use "../../styles/colors";
+
+.card {
+  border-width: 2px;
+  border-style: solid;
+  padding: 16px 0;
+  min-width: 150px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+    cursor: auto;
+  }
+}
+
+.bet {
+  border-radius: 50%;
+  padding: 6px 2px;
+  background-color: colors.$white;
+  color: colors.$black;
+  border: 4px solid colors.$blue;
+}
+
+.label {
+  font-size: 16px;
+}
+
+.blue {
+  border-color: colors.$blue;
+  background-color: colors.$dark-blue;
+  color: colors.$blue;
+}
+
+.green {
+  border-color: colors.$green;
+  background-color: colors.$dark-green;
+  color: colors.$green;
+}
+
+.red {
+  border-color: colors.$red;
+  background-color: colors.$dark-red;
+  color: colors.$red;
+}

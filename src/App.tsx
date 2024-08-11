@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { ScissorsRockPaper } from "./layout/scissors-rock-paper/scissors-rock-paper";
+import { ScissorsRockPaper } from "./layout/ScissorsRockPaper/ScissorsRockPaper";
 
 function App() {
   return (
