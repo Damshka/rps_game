@@ -149,6 +149,7 @@ export class ScissorsRockPaperStore {
   }
 
   defineWinner(): void {
+    console.log(this._randomChoice);
     this._setComputersChoice(this._randomChoice);
     const result: IGameResult = this._gameResult;
     this._setBestPlayersChoice(result.value);
@@ -163,11 +164,11 @@ export class ScissorsRockPaperStore {
       }
 
       this._setGameResult(result);
-      this._clearPlayersChoice();
     }, 1000);
   }
 
   reset(): void {
+    this._clearPlayersChoice();
     this._setBestPlayersChoice(null);
     this._setComputersChoice(null);
     this._setGameResult(null);
