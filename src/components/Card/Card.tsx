@@ -5,13 +5,13 @@ import { EColorKind } from "../../types/enums/color-kind.enum";
 export interface CardProps {
   onClick: () => void;
   label: string;
-  betValue: number;
+  value: number;
   disabled: boolean;
   kind: EColorKind | null;
 }
 export class Card extends React.Component<CardProps> {
   render() {
-    const { label, betValue, onClick, disabled, kind } = this.props;
+    const { label, value, onClick, disabled, kind } = this.props;
     return (
       <button
         className={`${styles["card"]} ${kind ? styles[kind] : ""}`}
@@ -19,7 +19,7 @@ export class Card extends React.Component<CardProps> {
         type={"button"}
         onClick={onClick}
       >
-        {!!betValue && <span className={styles["card-bet"]}>{betValue}</span>}
+        {!!value && <span className={styles["card-value"]}>{value}</span>}
         <span className={styles["card-label"]}>{label}</span>
       </button>
     );

@@ -90,7 +90,7 @@ export class RockScissorsPaper extends React.Component<ScissorsRockPaperProps> {
                   this._store.handlePlayersBet(o);
                 }}
                 label={o}
-                betValue={this._store.getBetForPlayersChoice(o)}
+                value={this._store.getBetForPlayersChoice(o)}
                 kind={this._getColorKind(o)}
               />
             ))}
