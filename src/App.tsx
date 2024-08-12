@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import { ScissorsRockPaper } from "./layout/ScissorsRockPaper/ScissorsRockPaper";
+import { RockScissorsPaper } from "./layout/RockScissorsPaper/RockScissorsPaper";
 
 function App() {
   return (
     <div className="App">
-      <ScissorsRockPaper />
+      <RockScissorsPaper />
     </div>
   );
 }

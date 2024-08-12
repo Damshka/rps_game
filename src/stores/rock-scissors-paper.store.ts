@@ -1,9 +1,9 @@
 import { action, computed, makeObservable, observable } from "mobx";
-import { EChoice } from "../types/scissors-rock-paper/enums/choice.enum";
+import { EChoice } from "../types/rock-scissors-paper/enums/choice.enum";
 import { EResult } from "../types/enums/result.enum";
-import { IGameResult } from "../types/scissors-rock-paper/interfaces/game-result.interface";
+import { IGameResult } from "../types/rock-scissors-paper/interfaces/game-result.interface";
 
-export class ScissorsRockPaperStore {
+export class RockScissorsPaperStore {
   constructor() {
     makeObservable(this);
   }
@@ -149,7 +149,6 @@ export class ScissorsRockPaperStore {
   }
 
   defineWinner(): void {
-    console.log(this._randomChoice);
     this._setComputersChoice(this._randomChoice);
     const result: IGameResult = this._gameResult;
     this._setBestPlayersChoice(result.value);

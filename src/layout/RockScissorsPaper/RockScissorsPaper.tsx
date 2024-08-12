@@ -4,21 +4,21 @@ import { Header } from "../../components/Header/Header";
 import { Counter } from "../../components/Counter/Counter";
 import { Card } from "../../components/Card/Card";
 import { Button } from "../../components/Button/Button";
-import { ScissorsRockPaperStore } from "../../stores/scissors-rock-paper.store";
-import { EChoice } from "../../types/scissors-rock-paper/enums/choice.enum";
+import { RockScissorsPaperStore } from "../../stores/rock-scissors-paper.store";
+import { EChoice } from "../../types/rock-scissors-paper/enums/choice.enum";
 import { EColorKind } from "../../types/enums/color-kind.enum";
-import styles from "./ScissorsRockPaper.module.scss";
-import { IGameResult } from "../../types/scissors-rock-paper/interfaces/game-result.interface";
+import styles from "./RockScissorsPaper.module.scss";
+import { IGameResult } from "../../types/rock-scissors-paper/interfaces/game-result.interface";
 
 interface ScissorsRockPaperProps {}
 
 @observer
-export class ScissorsRockPaper extends React.Component<ScissorsRockPaperProps> {
-  private _store: ScissorsRockPaperStore;
+export class RockScissorsPaper extends React.Component<ScissorsRockPaperProps> {
+  private _store: RockScissorsPaperStore;
 
   constructor(props: ScissorsRockPaperProps) {
     super(props);
-    this._store = new ScissorsRockPaperStore();
+    this._store = new RockScissorsPaperStore();
   }
 
   renderTitle() {
