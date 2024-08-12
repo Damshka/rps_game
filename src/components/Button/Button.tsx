@@ -1,11 +1,10 @@
 import React from "react";
-import { ButtonType } from "./button-type.type";
 import styles from "./Button.module.scss";
 
 export interface ButtonProps {
   title: string;
   onClick: () => void;
-  type?: ButtonType;
+  type?: "submit" | "button" | "reset";
   disabled?: boolean;
 }
 export class Button extends React.Component<ButtonProps> {
