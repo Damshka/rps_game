@@ -10,13 +10,13 @@ import { EColorKind } from "../../types/enums/color-kind.enum";
 import styles from "./RockScissorsPaper.module.scss";
 import { IGameResult } from "../../types/rock-scissors-paper/interfaces/game-result.interface";
 
-interface ScissorsRockPaperProps {}
+interface RockScissorsPaperProps {}
 
 @observer
-export class RockScissorsPaper extends React.Component<ScissorsRockPaperProps> {
+export class RockScissorsPaper extends React.Component<RockScissorsPaperProps> {
   private _store: RockScissorsPaperStore;
 
-  constructor(props: ScissorsRockPaperProps) {
+  constructor(props: RockScissorsPaperProps) {
     super(props);
     this._store = new RockScissorsPaperStore();
   }
